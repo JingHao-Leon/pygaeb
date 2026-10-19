@@ -305,8 +305,18 @@ def _write_subtotal_row(
 
 
 def _find_total_column(columns: list[ColumnDef]) -> int:
+    """Return the 1-based index of the column the totals belong in.
+
+    The document's own total column wins.  ``qty`` is only a fallback for
+    layouts that carry no separate total (the quantity sheet, where the
+    quantity *is* the total) — it must not be picked up first, because it
+    sits before the real total column in every other layout.
+    """
     for i, c in enumerate(columns, 1):
-        if c.key in ("total_price", "net_price", "item_total", "qty"):
+        if c.key in ("total_price", "net_price", "item_total"):
+            return i
+    for i, c in enumerate(columns, 1):
+        if c.key == "qty":
             return i
     return len(columns)
 
