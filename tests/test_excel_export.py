@@ -408,14 +408,7 @@ class TestFormatting:
 # ── Total Column Placement ─────────────────────────────────────────────
 
 class TestTotalsLandInTotalColumn:
-    """Subtotal and total rows must use the document's own total column.
-
-    ``_find_total_column`` returned the first column whose key was in
-    ``("total_price", "net_price", "item_total", "qty")``.  In every layout
-    but the quantity one, ``qty`` sits *before* the real total column, so the
-    grand total was written into the Qty column while the Total Price column
-    of that row stayed empty.
-    """
+    """Subtotal and total rows must use the document's own total column."""
 
     @staticmethod
     def _column_index(ws, header: str) -> int:

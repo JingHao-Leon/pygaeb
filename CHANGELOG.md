@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- **Excel export: subtotals and the grand total land in the Qty column.** `_find_total_column()` returned the first column whose key was in `("total_price", "net_price", "item_total", "qty")`, but `qty` sits *before* the real total column in the procurement, trade and cost layouts, so the category subtotals, the lot subtotal and the grand total were written into `Qty` while the sheet's own total column (`Total Price` / `Net Price` / `Total`) stayed empty — a subtotal of 10200 m³ for a position whose quantity is 120 m³. The document's total column now wins; `qty` stays the fallback for the quantity sheet, where the quantity *is* the total. (#50)
+- **Excel subtotals and the grand total no longer land in the Qty column.** `_find_total_column()` returned the first column whose key was in `("total_price", "net_price", "item_total", "qty")`, and `qty` sits before the real total column in the procurement, trade and cost layouts, so the category subtotals, the lot subtotal and the grand total were written into `Qty` while `Total Price` / `Net Price` / `Total` stayed empty. (#50)
 
 ## [1.19.0] - 2026-09-26
 
